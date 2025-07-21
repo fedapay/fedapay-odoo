@@ -1,205 +1,192 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IronSecur Training Platform</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  </head>
-  <body>
+<section class="oe_container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>FedaPay payment provider</h2>
+            <h3 class="text-primary mt-2">Description</h3>
+            <p class="lead">
+                This module extends your Odoo environment, allowing you to accept <strong>credit card</strong> and <strong>mobile money</strong>
+                payments easily and securely through <strong>FedaPay Checkout</strong>.
+            </p>
 
-        <section class="oe_container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>FedaPay payment provider</h2>
-                    <h3 class="text-primary mt-2">Description</h3>
-                    <p class="lead">
-                        This module extends your Odoo environment, allowing you to accept <strong>credit card</strong> and <strong>mobile money</strong>
-                        payments easily and securely through <strong>FedaPay Checkout</strong>.
-                    </p>
+            <h5 class="mt-2">📌 Available in:</h5>
+            <ul>
+                <li>Benin</li>
+                <li>Togo</li>
+                <li>Ivory Coast</li>
+                <li>Senegal</li>
+                <li>Mali</li>
+                <li>Niger</li>
+                <li>Burkina Faso</li>
+                <li>🌍 Worldwide (for card payments)</li>
+            </ul>
 
-                    <h5 class="mt-2">📌 Available in:</h5>
-                    <ul>
-                        <li>Benin</li>
-                        <li>Togo</li>
-                        <li>Ivory Coast</li>
-                        <li>Senegal</li>
-                        <li>Mali</li>
-                        <li>Niger</li>
-                        <li>Burkina Faso</li>
-                        <li>🌍 Worldwide (for card payments)</li>
-                    </ul>
+            <h5 class="mt-2">📌 Why choose FedaPay?</h5>
+            <ul>
+                <li><strong>No setup fees</strong>, <strong>no monthly charges</strong>, <strong>no hidden costs</strong></li>
+                <li>You <strong>only pay</strong> when you <strong>earn money</strong></li>
+                <li>Payouts to your <strong>bank account</strong> or <strong>mobile money wallet</strong> every <strong>3 days</strong></li>
+                <li>Fast, reliable, and secure transactions</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-                    <h5 class="mt-2">📌 Why choose FedaPay?</h5>
-                    <ul>
-                        <li><strong>No setup fees</strong>, <strong>no monthly charges</strong>, <strong>no hidden costs</strong></li>
-                        <li>You <strong>only pay</strong> when you <strong>earn money</strong></li>
-                        <li>Payouts to your <strong>bank account</strong> or <strong>mobile money wallet</strong> every <strong>3 days</strong></li>
-                        <li>Fast, reliable, and secure transactions</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+<section class="oe_container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-primary">Installation & Configuration</h3>
+            <p class="lead">
+                Follow these steps to configure the FedaPay payment provider within your Odoo environment.
+            </p>
+        </div>
+    </div>
 
-        <section class="oe_container mt-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="text-primary">Installation & Configuration</h3>
-                    <p class="lead">
-                        Follow these steps to configure the FedaPay payment provider within your Odoo environment.
-                    </p>
-                </div>
-            </div>
+    <!-- Step 1 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>1. Install the FedaPay payment provider module</h5>
+            <ul>
+                <li>Ensure the FedaPay payment provider module is available in your Odoo environment. Then, install it via the Apps menu.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step1.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
 
-            <!-- Step 1 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>1. Install the FedaPay payment provider module</h5>
-                    <ul>
-                        <li>Ensure the FedaPay payment provider module is available in your Odoo environment. Then, install it via the Apps menu.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step1.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+    <!-- Step 2 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>2. Access odoo payment provider list</h5>
+            <ul>
+                <li>
+                To access the FedaPay payment provider in Odoo, go to either 
+                <strong>Website → Configuration → Payment Providers</strong> or <strong>Invoicing → Configuration → Payment Providers</strong>, 
+                depending on your workflow
+                </li>
+                <li>From the list of available providers, locate <strong>FedaPay</strong> and click to open its configuration form</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+        <img src="images/step2.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
 
-            <!-- Step 2 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>2. Access odoo payment provider list</h5>
-                    <ul>
-                        <li>
-                        To access the FedaPay payment provider in Odoo, go to either 
-                        <strong>Website → Configuration → Payment Providers</strong> or <strong>Invoicing → Configuration → Payment Providers</strong>, 
-                        depending on your workflow
-                        </li>
-                        <li>From the list of available providers, locate <strong>FedaPay</strong> and click to open its configuration form</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                <img src="images/step2.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+    <!-- Step 3 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>3. Configure the FedaPay Payment Provider</h5>
+            <ul>
+                <li>Select whether you want to use the provider in <strong>Test</strong> or <strong>Live (Enabled)</strong> state. This determines if transactions are real or for testing purposes.</li>
+                <li>Credentials tab: Based on the selected state, enter the required fedapay api <strong>secret key</strong>.</li>
+                <li>Configuration tab: Select a <strong>Journal</strong> to assign the appropriate accounting journal that will record transactions made through FedaPay</li>
+                <li>Click <strong>Save</strong> to apply your configuration.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step3.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
+</section>
+<section class="oe_container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-primary">Demo</h3>
+            <p class="lead">
+                Once the FedaPay provider is configured, you can test its integration through a ecommerce or invoicing scenario. Follow these steps
+            </p>
+        </div>
+    </div>
 
-            <!-- Step 3 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>3. Configure the FedaPay Payment Provider</h5>
-                    <ul>
-                        <li>Select whether you want to use the provider in <strong>Test</strong> or <strong>Live (Enabled)</strong> state. This determines if transactions are real or for testing purposes.</li>
-                        <li>Credentials tab: Based on the selected state, enter the required fedapay api <strong>secret key</strong>.</li>
-                        <li>Configuration tab: Select a <strong>Journal</strong> to assign the appropriate accounting journal that will record transactions made through FedaPay</li>
-                        <li>Click <strong>Save</strong> to apply your configuration.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step3.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
-        </section>
-        <section class="oe_container mt-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="text-primary">Demo</h3>
-                    <p class="lead">
-                        Once the FedaPay provider is configured, you can test its integration through a ecommerce or invoicing scenario. Follow these steps
-                    </p>
-                </div>
-            </div>
+    <!-- Step 1 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>1. Ecommerce website checkout</h5>
+            <ul>
+                <li>After configuring the FedaPay payment provider, users can proceed to checkout through the Odoo eCommerce website.</li>
+                <li>During the payment step, they will be presented with an option to pay using FedaPay during checkout.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step4.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
 
-            <!-- Step 1 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>1. Ecommerce website checkout</h5>
-                    <ul>
-                        <li>After configuring the FedaPay payment provider, users can proceed to checkout through the Odoo eCommerce website.</li>
-                        <li>During the payment step, they will be presented with an option to pay using FedaPay during checkout.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step4.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+    <!-- Step 2 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>2. Payment page</h5>
+            <ul>
+                <li>User will be redirected to FedaPay payment page for payment. Fill your payment details and complete the payment.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step5.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
 
-            <!-- Step 2 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>2. Payment page</h5>
-                    <ul>
-                        <li>User will be redirected to FedaPay payment page for payment. Fill your payment details and complete the payment.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step5.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+    <!-- Step 3 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>3. Payment confirmation</h5>
+            <ul>
+                <li>After a successful payment, users will be redirected back to the Odoo Payment confirmation page.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step6.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
 
-            <!-- Step 3 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>3. Payment confirmation</h5>
-                    <ul>
-                        <li>After a successful payment, users will be redirected back to the Odoo Payment confirmation page.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step6.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+    <!-- Step 4 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>4. Invoice Payment</h5>
+            <ul>
+                <li>Users can also make payments using the Fedapay payment option through the Invoice Sign & Pay feature.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step7.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
 
-            <!-- Step 4 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>4. Invoice Payment</h5>
-                    <ul>
-                        <li>Users can also make payments using the Fedapay payment option through the Invoice Sign & Pay feature.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step7.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+    <!-- Step 5 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>5. Invoice Payment Provider</h5>
+            <ul>
+                <li>Select the FedaPay payment option and click pay.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step8.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
 
-            <!-- Step 5 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>5. Invoice Payment Provider</h5>
-                    <ul>
-                        <li>Select the FedaPay payment option and click pay.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step8.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
-
-            <!-- Step 6 -->
-            <div class="row mt-3">
-                <div class="col-md-4 my-md-auto">
-                    <h5>6. Invoice payment Confirmation</h5>
-                    <ul>
-                        <li>After successful payment users will be redirected back to Odoo Payment confirmation Page.</li>
-                    </ul>
-                </div>
-                <div class="col-md-8">
-                    <img src="images/step9.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
-        </section>
-        <section class="oe_container mt-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="text-primary">Help & Support</h3>
-                    <span class="lead ">
-                        Need assistance or have questions about this module ?
-                        <a href="mailto:support@fedapay.com" class="text-info">
-                            Contact Support
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </section>
-  </body>
-</html>
+    <!-- Step 6 -->
+    <div class="row mt-3">
+        <div class="col-md-4 my-md-auto">
+            <h5>6. Invoice payment Confirmation</h5>
+            <ul>
+                <li>After successful payment users will be redirected back to Odoo Payment confirmation Page.</li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <img src="images/step9.jpg" class="img-fluid" alt="">
+        </div>
+    </div>
+</section>
+<section class="oe_container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-primary">Help & Support</h3>
+            <span class="lead ">
+                Need assistance or have questions about this module ?
+                <a href="mailto:support@fedapay.com" class="text-info">
+                    Contact Support
+                </a>
+            </span>
+        </div>
+    </div>
+</section>
