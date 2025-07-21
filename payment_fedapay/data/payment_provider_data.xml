@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="payment_provider_fedapay" model="payment.provider">
+        <field name="name">FedaPay</field>
+        <field name="image_128" type="base64" file="payment_fedapay/static/description/icon.png"/>
+        <field name="code">fedapay</field>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+        <field name="available_country_ids" eval="[Command.set([
+            ref('base.bj'),
+            ref('base.tg'),
+            ref('base.ci'),
+            ref('base.sn'),
+            ref('base.ne'),
+            ref('base.ml'),
+            ref('base.gn'),
+            ref('base.bf')])]"
+        />
+    </record>
+</odoo>
