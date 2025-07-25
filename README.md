@@ -1,6 +1,6 @@
 # FedaPay payment provider module for Odoo
 
-This module extends your Odoo environment, allowing you to accept **credit card** and **mobile money** payments easily and securely through **FedaPay Checkout**
+This module extends your Odoo environment, allowing you to accept **credit card** and **mobile money** payments easily and securely through **FedaPay Checkout**.
 
 ## Setup Instructions
 
