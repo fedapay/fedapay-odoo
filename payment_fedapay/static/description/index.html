@@ -14,8 +14,8 @@
                     <h2>FedaPay payment provider</h2>
                     <h3 class="text-primary mt-2">Description</h3>
                     <p class="lead">
-                        This module extends your Odoo environment, allowing you to accept <strong>credit card</strong> and <strong>mobile money</strong>
-                        payments easily and securely through <strong>FedaPay Checkout</strong>.
+                        This module extends your Odoo environment, allowing you to accept <b>credit card</b> and <b>mobile money</b>
+                        payments easily and securely through <b>FedaPay Checkout</b>.
                     </p>
 
                     <h5 class="mt-2">📌 Available in:</h5>
@@ -32,9 +32,9 @@
 
                     <h5 class="mt-2">📌 Why choose FedaPay?</h5>
                     <ul>
-                        <li><strong>No setup fees</strong>, <strong>no monthly charges</strong>, <strong>no hidden costs</strong></li>
-                        <li>You <strong>only pay</strong> when you <strong>earn money</strong></li>
-                        <li>Payouts to your <strong>bank account</strong> or <strong>mobile money wallet</strong> every <strong>3 days</strong></li>
+                        <li><b>No setup fees</b>, <b>no monthly charges</b>, <b>no hidden costs</b></li>
+                        <li>You <b>only pay</b> when you <b>earn money</b></li>
+                        <li>Payouts to your <b>bank account</b> or <b>mobile money wallet</b> every <b>3 days</b></li>
                         <li>Fast, reliable, and secure transactions</li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@
         <section class="oe_container mt-4">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="text-primary">Installation & Configuration</h3>
+                    <h3 class="text-primary">Installation & Configuration on Odoo</h3>
                     <p class="lead">
                         Follow these steps to configure the FedaPay payment provider within your Odoo environment.
                     </p>
@@ -71,10 +71,10 @@
                     <ul>
                         <li>
                         To access the FedaPay payment provider in Odoo, go to either 
-                        <strong>Website → Configuration → Payment Providers</strong> or <strong>Invoicing → Configuration → Payment Providers</strong>, 
+                        <b>Website → Configuration → Payment Providers</b> or <b>Invoicing → Configuration → Payment Providers</b>, 
                         depending on your workflow
                         </li>
-                        <li>From the list of available providers, locate <strong>FedaPay</strong> and click to open its configuration form</li>
+                        <li>From the list of available providers, locate <b>FedaPay</b> and click to open its configuration form</li>
                     </ul>
                 </div>
                 <div class="col-md-8">
@@ -87,10 +87,10 @@
                 <div class="col-md-4 my-md-auto">
                     <h5>3. Configure the FedaPay Payment Provider</h5>
                     <ul>
-                        <li>Select whether you want to use the provider in <strong>Test</strong> or <strong>Live (Enabled)</strong> state. This determines if transactions are real or for testing purposes.</li>
-                        <li>Credentials tab: Based on the selected state, enter the required fedapay api <strong>secret key</strong>.</li>
-                        <li>Configuration tab: Select a <strong>Journal</strong> to assign the appropriate accounting journal that will record transactions made through FedaPay</li>
-                        <li>Click <strong>Save</strong> to apply your configuration.</li>
+                        <li>Select whether you want to use the provider in <b>Test</b> or <b>Live (Enabled)</b> state. This determines if transactions are real or for testing purposes.</li>
+                        <li>Credentials tab: Based on the selected state, enter the required fedapay api <b>secret key</b>.</li>
+                        <li>Configuration tab: Select a <b>Journal</b> to assign the appropriate accounting journal that will record transactions made through FedaPay</li>
+                        <li>Click <b>Save</b> to apply your configuration.</li>
                     </ul>
                 </div>
                 <div class="col-md-8">
@@ -188,6 +188,17 @@
             </div>
         </section>
         <section class="oe_container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-primary">Webhook configuration on FedaPay dashboard (Optional)</h3>
+                    <p class="lead">
+                        Configuring the webhook allows FedaPay to automatically notify Odoo as soon as a payment is completed, even if the customer's redirection to your site fails after payment.
+                    </p>
+                    <p>On your FedaPay dashboard, go to the <b>Webhooks</b> section and click the <b>New Webhook</b> button. Enter your Odoo domain URL followed by <code>/payment/fedapay/webhook</code> in the URL text field. For example: <code>https://yourcompany.odoo.com/payment/fedapay/webhook</code>, where <code>yourcompany.odoo.com</code> is your Odoo domain URL.</p>
+                </div>
+            </div>
+        </section>
+        <section class="oe_container mt-4 mb-3">
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="text-primary">Help & Support</h3>
