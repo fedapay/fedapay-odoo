@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 15:57+0000\n"
-"PO-Revision-Date: 2025-07-11 15:57+0000\n"
+"POT-Creation-Date: 2026-02-09 23:41+0000\n"
+"PO-Revision-Date: 2026-02-09 23:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/payment_fedapay/models/payment_transaction.py:0
 msgid "Cancelled payment with status: %s"
-msgstr "Paiement annulé avec le statut : %s"
+msgstr "Paiement annulé avec statut : %s"
 
 #. module: payment_fedapay
 #: model:ir.model.fields,field_description:payment_fedapay.field_payment_provider__code
@@ -27,9 +27,15 @@ msgid "Code"
 msgstr ""
 
 #. module: payment_fedapay
+#: model:ir.model.fields,field_description:payment_fedapay.field_payment_provider__display_name
+#: model:ir.model.fields,field_description:payment_fedapay.field_payment_transaction__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: payment_fedapay
 #: model_terms:ir.ui.view,arch_db:payment_fedapay.payment_provider_form
-msgid "Enter your FedaPay secret key"
-msgstr "Entrez votre clé secrète FedaPay"
+msgid "Enter your FedaPay API secret key"
+msgstr "Entrez votre clé secrète API FedaPay"
 
 #. module: payment_fedapay
 #: model:ir.model.fields.selection,name:payment_fedapay.selection__payment_provider__code__fedapay
@@ -42,29 +48,29 @@ msgstr ""
 #. odoo-python
 #: code:addons/payment_fedapay/models/payment_provider.py:0
 msgid "FedaPay error: %s"
-msgstr "Erreur FedaPay : %s"
+msgstr "Erreur FedaPay : %s"
 
 #. module: payment_fedapay
 #. odoo-python
 #: code:addons/payment_fedapay/models/payment_provider.py:0
 msgid "FedaPay: Could not establish a connection to the API."
-msgstr "FedaPay : Impossible d'établir une connexion à l'API."
+msgstr "FedaPay : Impossible d'établir une connexion avec l'API."
+
+#. module: payment_fedapay
+#: model:ir.model.fields,field_description:payment_fedapay.field_payment_provider__id
+#: model:ir.model.fields,field_description:payment_fedapay.field_payment_transaction__id
+msgid "ID"
+msgstr ""
 
 #. module: payment_fedapay
 #: model_terms:ir.ui.view,arch_db:payment_fedapay.payment_provider_form
-msgid "Live API Key"
-msgstr "Clé API en mode live"
+msgid "Live API secret Key"
+msgstr "Clé secrète API en mode live"
 
 #. module: payment_fedapay
-#: model:ir.model.fields,field_description:payment_fedapay.field_payment_provider__fedapay_live_secret_key
-msgid "Live secret key"
-msgstr "Clé secrète en mode live"
-
-#. module: payment_fedapay
-#. odoo-python
-#: code:addons/payment_fedapay/models/payment_transaction.py:0
-msgid "No transaction found matching provider reference %s."
-msgstr "Aucune transaction trouvée correspondant à la référence du fournisseur %s."
+#: model:ir.model.fields,field_description:payment_fedapay.field_payment_provider__fedapay_live_api_secret_key
+msgid "Live API secret key"
+msgstr "Clé secrète API en mode live"
 
 #. module: payment_fedapay
 #: model:ir.model,name:payment_fedapay.model_payment_provider
@@ -80,41 +86,41 @@ msgstr "Transaction de paiement"
 #. odoo-python
 #: code:addons/payment_fedapay/models/payment_transaction.py:0
 msgid "Received data with invalid payment status: %s"
-msgstr "Données reçues avec un statut de paiement invalide : %s"
+msgstr "Données reçues avec un statut de paiement non valide : %s"
 
 #. module: payment_fedapay
 #: model_terms:ir.ui.view,arch_db:payment_fedapay.payment_provider_form
-msgid "Sandbox API Key"
-msgstr "Clé API en mode sandbox"
+msgid "Sandbox API secret Key"
+msgstr "Clé secrète de l'API en mode sandbox"
 
 #. module: payment_fedapay
-#: model:ir.model.fields,field_description:payment_fedapay.field_payment_provider__fedapay_sandbox_secret_key
-msgid "Sandbox secret key"
-msgstr "Clé secrète en mode sandbox"
-
-#. module: payment_fedapay
-#. odoo-python
-#: code:addons/payment_fedapay/models/payment_provider.py:0
-msgid "The sandbox secret key is required"
-msgstr "La clé secrète sandbox est requise"
+#: model:ir.model.fields,field_description:payment_fedapay.field_payment_provider__fedapay_sandbox_api_secret_key
+msgid "Sandbox API secret key"
+msgstr "Clé secrète de l'API Sandbox"
 
 #. module: payment_fedapay
 #. odoo-python
 #: code:addons/payment_fedapay/models/payment_provider.py:0
-msgid "The live secret key is required"
-msgstr "La clé secrète live est requise"
+msgid "The live API secret key is required"
+msgstr "La clé secrète API en direct est requise."
 
 #. module: payment_fedapay
 #. odoo-python
 #: code:addons/payment_fedapay/models/payment_provider.py:0
-msgid "The live secret key must start with sk_live_"
-msgstr "La clé secrète live doit commencer par sk_live_"
+msgid "The live API secret key must start with sk_live_"
+msgstr "La clé secrète API live doit commencer par sk_live_"
 
 #. module: payment_fedapay
 #. odoo-python
 #: code:addons/payment_fedapay/models/payment_provider.py:0
-msgid "The sandbox secret key must start with sk_sandbox_"
-msgstr "La clé secrète sandbox doit commencer par sk_sandbox_"
+msgid "The sandbox API secret key is required"
+msgstr "La clé secrète de l'API sandbox est requise."
+
+#. module: payment_fedapay
+#. odoo-python
+#: code:addons/payment_fedapay/models/payment_provider.py:0
+msgid "The sandbox API secret key must start with sk_sandbox_"
+msgstr "La clé secrète de l'API sandbox doit commencer par sk_sandbox_"
 
 #. module: payment_fedapay
 #: model:ir.model.fields,help:payment_fedapay.field_payment_provider__code
@@ -133,13 +139,13 @@ msgstr "Votre paiement a été annulé."
 
 #. module: payment_fedapay
 #: model_terms:payment.provider,pending_msg:payment_fedapay.payment_provider_fedapay
-msgid "Your payment has been successfully processed but is waiting for approval."
-msgstr "Votre paiement a été traité avec succès mais est en attente d'approbation."
+msgid "Your payment has been processed but is waiting for approval."
+msgstr "Votre paiement a été traité mais est en attente d'approbation."
 
 #. module: payment_fedapay
 #: model_terms:payment.provider,done_msg:payment_fedapay.payment_provider_fedapay
-msgid "Your payment has been successfully processed."
-msgstr "Votre paiement a été traité avec succès."
+msgid "Your payment has been processed."
+msgstr "Votre paiement a été traité."
 
 #. module: payment_fedapay
 #: model_terms:ir.ui.view,arch_db:payment_fedapay.payment_provider_form

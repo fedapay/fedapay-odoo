@@ -3,7 +3,6 @@
 from odoo import _, models, fields, api
 from odoo.addons.payment_fedapay import const
 from odoo.exceptions import ValidationError
-from werkzeug.urls import  url_join
 
 import re, logging, requests, pprint
 
@@ -15,64 +14,70 @@ class PaymentProvider(models.Model):
     code = fields.Selection(
         selection_add=[('fedapay', "FedaPay")], ondelete={'fedapay': 'set default'})
 
-    fedapay_live_secret_key = fields.Char(
-        string='Live secret key', 
+    fedapay_live_api_secret_key = fields.Char(
+        string='Live API secret key', 
+        copy=False,
         groups="base.group_system"
     )
-    fedapay_sandbox_secret_key = fields.Char(
-        string='Sandbox secret key', 
+    fedapay_sandbox_api_secret_key = fields.Char(
+        string='Sandbox API secret key',
+        copy=False,
     )
 
     #=== CONSTRAINT METHODS ===#
 
-    @api.constrains('state', 'fedapay_live_secret_key', 'fedapay_sandbox_secret_key')
+    @api.constrains(
+        'state', 
+        'fedapay_live_api_secret_key', 
+        'fedapay_sandbox_api_secret_key',
+    )
     def _fedapay_config_form_validation(self):
-        """ Validate provider secret key depending on the provider state
+        """ Validate provider API secret key depending on the provider state
 
         :return: None
         :raise ValidationError: If the provider of a connected account is set in state 'test'.
         """
 
-        pattern_live = r'^sk_live_.+'
-        pattern_sandbox = r'^sk_sandbox_.+'
+        pattern_live_api_secret_key = r'^sk_live_.+'
+        pattern_sandbox_api_secret_key = r'^sk_sandbox_.+'
 
         for record in self:
 
             if record.code != 'fedapay':
                 continue
              
-            if record.state == 'test' and not record.fedapay_sandbox_secret_key:
-                raise ValidationError(_('The sandbox secret key is required'))
+            if record.state == 'test' and not record.fedapay_sandbox_api_secret_key:
+                raise ValidationError(_('The sandbox API secret key is required'))
             
-            if record.state  == 'enabled' and not record.fedapay_live_secret_key:
-                raise ValidationError(_('The live secret key is required'))
+            if record.state  == 'enabled' and not record.fedapay_live_api_secret_key:
+                raise ValidationError(_('The live API secret key is required'))
             
             if (record.state == 'test'
-                and not re.match(pattern_sandbox, record.fedapay_sandbox_secret_key)
-            ): raise ValidationError(_('The sandbox secret key must start with sk_sandbox_'))
+                and not re.match(pattern_sandbox_api_secret_key, record.fedapay_sandbox_api_secret_key)
+            ): raise ValidationError(_('The sandbox API secret key must start with sk_sandbox_'))
 
-            if (record.state == 'enabled' 
-                and not re.match(pattern_live, record.fedapay_live_secret_key)
-            ): raise ValidationError(_('The live secret key must start with sk_live_'))
+            if (record.state == 'enabled'
+                and not re.match(pattern_live_api_secret_key, record.fedapay_live_api_secret_key)
+            ): raise ValidationError(_('The live API secret key must start with sk_live_'))
             
 
     #=== BUSINESS METHODS ===#
     
-    def _fedapay_get_secret_key(self):
-        """ Return the appropriate FedaPay secret key depending on the provider state.
+    def _fedapay_get_api_secret_key(self):
+        """ Return the appropriate FedaPay API secret key depending on the provider state.
 
         Note: `self.ensure_one()`
 
-        In test mode, returns the sandbox key; in live mode, returns the production key.
-        This method is useful for injecting the key into frontend templates or payloads.
+        In test mode, returns the sandbox API secret key; in live mode, returns the production API secret key.
+        This method is useful for injecting the API secret key into frontend templates or payloads.
 
-        :return: The secret secret key (sandbox ou live) as a string .
+        :return: The FedaPay API secret key (sandbox ou live) as a string .
         :rtype: str
         """
 
         self.ensure_one()
 
-        return self.fedapay_sandbox_secret_key if self.state == 'test' else self.fedapay_live_secret_key;
+        return self.fedapay_sandbox_api_secret_key if self.state == 'test' else self.fedapay_live_api_secret_key;
     
     
     def _fedapay_make_request(self, endpoint, data=None, method='POST'):
@@ -93,9 +98,11 @@ class PaymentProvider(models.Model):
         url = f"{self._fedapay_get_api_url()}{endpoint}"
 
         headers = {
-            "Authorization": f"Bearer {self._fedapay_get_secret_key()}",
+            "Authorization": f"Bearer {self._fedapay_get_api_secret_key()}",
             "Content-Type": "application/json",
             "Accept": "application/json",
+            'X-FedaPay-Product': 'odoo-19',
+            'X-FedaPay-Channel': 'web',
             "User-Agent": f"Odoo-FedaPay/{self.env['ir.module.module'].search([('name', '=', 'payment_fedapay')], limit=1).installed_version or 'dev'}",
         }
 

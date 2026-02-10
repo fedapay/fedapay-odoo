@@ -1,4 +1,4 @@
-from odoo import _, models
+from odoo import _, models, api
 from odoo.exceptions import ValidationError
 from werkzeug import urls
 from odoo.addons.payment_fedapay import const
@@ -29,7 +29,13 @@ class PaymentTransaction(models.Model):
         # create transaction
         payload = self._fedapay_prepare_transaction_request_payload()
         _logger.info("sending '/transactions' request for transaction link creation:\n%s", pprint.pformat(payload))
-        request_data = self.provider_id._fedapay_make_request('/transactions', data=payload)
+
+        try:
+            request_data = self.provider_id._fedapay_make_request('/transactions', data=payload)
+        except ValidationError as error:
+            self._set_error(str(error))
+            return {}
+
         transaction_data = request_data.get('v1/transaction', {})
 
         # The provider reference is set now to allow fetching the payment status after redirection
@@ -42,6 +48,7 @@ class PaymentTransaction(models.Model):
         checkout_url = transaction_data.get('payment_url')
         parsed_url = urls.url_parse(checkout_url)
         url_params = urls.url_decode(parsed_url.query)
+
         return {'checkout_url': checkout_url, 'url_params': url_params}
     
 
@@ -64,52 +71,51 @@ class PaymentTransaction(models.Model):
                 'iso': self.currency_id.name
             },
             'callback_url': f'{redirect_url}',
+            'merchant_reference': self.reference
         }
     
     
-    def _get_tx_from_notification_data(self, provider_code, notification_data):
+    @api.model
+    def _search_by_reference(self, provider_code, payment_data):
         """ Override of payment to find the transaction based on FedaPay data.
 
         :param str provider_code: The code of the provider that handled the transaction
-        :param dict notification_data: The notification data sent by the provider
+        :param dict payment_data: The payment data sent by the provider
         :return: The transaction if found
-        :rtype: recordset of `payment.transaction`
-        :raise: ValidationError if the data match no transaction
+        :rtype: payment.transaction
         """
-        tx = super()._get_tx_from_notification_data(provider_code, notification_data)
-        if provider_code != 'fedapay' or len(tx) == 1:
-            return tx
+        if provider_code != 'fedapay':
+            return super()._search_by_reference(provider_code, payment_data)
 
-        tx = self.search(
-            [('provider_reference', '=', notification_data.get('id')), ('provider_code', '=', 'fedapay')]
-        )
-        _logger.info("_get_tx_from_notification_data:\n%s", pprint.pformat(notification_data))
+        provider_reference = payment_data.get('id')
+        if provider_reference:
+            tx = self.search([('provider_reference', '=', provider_reference), ('provider_code', '=', 'fedapay')])
+        else:
+            _logger.warning("Received data with missing provider reference")
+            tx = self
 
         if not tx:
-            raise ValidationError("FedaPay: " + _(
-                "No transaction found matching provider reference %s.", notification_data.get('id')
-            ))
+            _logger.warning("No transaction found matching provider reference %s.", provider_reference)
+
         return tx
 
 
-    def _process_notification_data(self, notification_data):
-        """ Override of payment to process the transaction based on FedaPay data.
-
-        Note: self.ensure_one()
-
-        :param dict notification_data: The notification data sent by the provider
-        :return: None
-        """
-        super()._process_notification_data(notification_data)
+    def _extract_amount_data(self, payment_data):
+        """Override of `payment` to extract the amount and currency from the payment data."""
         if self.provider_code != 'fedapay':
-            return
+            return super()._extract_amount_data(payment_data)
 
-        request_data = self.provider_id._fedapay_make_request(
-            f'/transactions/{self.provider_reference}', method="GET"
-        )
-        transaction_data = request_data.get('v1/transaction', {})
+        amount = payment_data.get('amount')
+        return {
+            'amount': float(amount),
+            'currency_code': 'XOF',
+        }
+    
 
-        _logger.info("sending '/transactions/search' request to retrieve transaction:\n%s", pprint.pformat(transaction_data))
+    def _apply_updates(self, payment_data):
+        """Override of `payment` to update the transaction based on the payment data."""
+        if self.provider_code != 'fedapay':
+            return super()._apply_updates(payment_data)
 
         # Force FedaPay as the payment method if it exists.
         self.payment_method_id = self.env['payment.method'].search(
@@ -117,7 +123,7 @@ class PaymentTransaction(models.Model):
         ) or self.payment_method_id
 
         # Update the payment state.
-        payment_status = transaction_data.get('status')
+        payment_status = payment_data.get('status')
         if payment_status in const.PAYMENT_STATUS_MAPPING['pending']:
             self._set_pending()
         elif payment_status in const.PAYMENT_STATUS_MAPPING['done']:
@@ -126,7 +132,7 @@ class PaymentTransaction(models.Model):
             self._set_canceled("FedaPay: " + _("Cancelled payment with status: %s", payment_status))
         else:
             _logger.info(
-                "received data with invalid payment status (%s) for transaction with reference %s",
+                "Received data with invalid payment status (%s) for transaction with reference %s",
                 payment_status, self.reference
             )
             self._set_error(

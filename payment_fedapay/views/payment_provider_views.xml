@@ -6,19 +6,19 @@
         <field name="inherit_id" ref="payment.payment_provider_form"/>
         <field name="arch" type="xml">
             <group name="provider_credentials" position="inside">
-                <group invisible="code != 'fedapay'" string="Enter your FedaPay secret key">
+                <group invisible="code != 'fedapay'" string="Enter your FedaPay API secret key">
                     <field 
-                        name="fedapay_live_secret_key" 
+                        name="fedapay_live_api_secret_key" 
                         placeholder="sk_live_xxxxxxxxxxxxxxxxxxxxxxxx"
-                        string="Live API Key" 
+                        string="Live API secret key"
                         required="code == 'fedapay' and state == 'enabled'"
                         password="True"
                         style="border-bottom: 1px solid #b5b5b5"
                     />
                     <field 
-                        name="fedapay_sandbox_secret_key" 
+                        name="fedapay_sandbox_api_secret_key"
                         placeholder="sk_sandbox_xxxxxxxxxxxxxxxxxxxxxxxx"
-                        string="Sandbox API Key" 
+                        string="Sandbox API secret key"
                         required="code == 'fedapay' and state == 'test'"
                         password="True"
                         style="border-bottom: 1px solid #b5b5b5"

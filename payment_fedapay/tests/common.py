@@ -10,11 +10,13 @@ class FedaPayCommon(PaymentCommon):
         super().setUpClass()
 
         cls.fedapay = cls._prepare_provider('fedapay', update_values={
-            'fedapay_sandbox_secret_key': 'pk_sandbox_wlhaeArIxFAto7B7b_ezozIz',
+            'fedapay_sandbox_api_secret_key': 'sk_sandbox_XiLYC0gj_CTblJiCs6T4raFG',
         })
         cls.provider = cls.fedapay
-        cls.currency = cls._prepare_currency('XOF')
+        cls.currency = cls._enable_currency('XOF')
 
-        cls.notification_data = {
-            'id': cls.reference,
+        cls.payment_data = {
+            'id': '403868',
+            'anount': cls.amount,
+            'merchant_reference': cls.reference,
         }

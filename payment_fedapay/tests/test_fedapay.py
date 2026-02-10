@@ -16,12 +16,12 @@ class FedaPayTest(FedaPayCommon, PaymentHttpCommon):
     def test_payment_request_payload_values(self):
         tx = self._create_transaction(flow='redirect')
 
-        payload = tx._fedapay_prepare_payment_request_payload()
+        payload = tx._fedapay_prepare_transaction_request_payload()
 
         self.assertIn('amount', payload)
         self.assertIn('currency', payload)
         self.assertIn('callback_url', payload)
-        self.assertEqual(payload['description'], tx.reference)
+        self.assertEqual(payload['description'], f"Odoo reference : {tx.reference}")
 
 
     @mute_logger(
@@ -33,9 +33,8 @@ class FedaPayTest(FedaPayCommon, PaymentHttpCommon):
         tx = self._create_transaction('redirect')
         url = self._build_url(FedaPayController._webhook_url)
         with patch(
-            'odoo.addons.payment_fedapay.models.payment_provider.PaymentProvider'
-            '._fedapay_make_request',
-            return_value={'status': 'approved'},
+            'odoo.addons.payment_fedapay.models.payment_provider.PaymentProvider._fedapay_make_request',
+            return_value={'entity': {'id': tx.provider_reference, 'status': 'approved'}},
         ):
-            self._make_http_post_request(url, data=self.notification_data)
+            self._make_http_post_request(url, data=self.payment_data)
         self.assertEqual(tx.state, 'done')

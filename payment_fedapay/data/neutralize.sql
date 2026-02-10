@@ -1,4 +1,4 @@
--- disable mollie payment provider
+-- disable FedaPay payment provider
 UPDATE payment_provider
-   SET fedapay_live_secret_key = NULL,
-      fedapay_sandbox_secret_key = NULL;
+   SET fedapay_live_api_secret_key = NULL,
+      fedapay_sandbox_api_secret_key = NULL;

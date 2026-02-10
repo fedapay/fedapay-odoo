@@ -9,16 +9,6 @@
         <field name="support_tokenization">False</field>
         <field name="support_express_checkout">False</field>
         <field name="support_refund">none</field>
-        <field name="supported_country_ids" eval="[Command.set([
-            ref('base.bj'),
-            ref('base.tg'),
-            ref('base.ci'),
-            ref('base.sn'),
-            ref('base.ne'),
-            ref('base.ml'),
-            ref('base.gn'),
-            ref('base.bf')])]"
-        />
         <field name="supported_currency_ids" eval="[Command.set([ref('base.XOF')])]"/>
         <field name="provider_ids" eval="[Command.set([ref('payment_fedapay.payment_provider_fedapay')])]"/>
     </record>

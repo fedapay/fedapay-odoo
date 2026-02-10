@@ -8,7 +8,7 @@
     'sequence': 350,
     'summary': 'FedaPay payment provider for Odoo',
     'description': 'Accept Visa, MasterCard, and Mobile Money payments seamlessly in Odoo with the FedaPay payment provider module.',
-    'author': 'FedaPay',
+    'author': 'FedaPay SA',
     'website': 'https://www.fedapay.com',
     'depends': ['payment'],
     'data': [
